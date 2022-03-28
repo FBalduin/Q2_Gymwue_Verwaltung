@@ -15,8 +15,6 @@ import java.awt.Color;
 public class MainFrame extends JFrame {
 
     private JPanel contentPane;
-    private JTextField vornameField
-    private JPanel contentPane; // Testkommentar? bbb
     private JTextField vornameField;
     private JTextField nachnameField;
     private JTextField gebDatField;
@@ -25,7 +23,7 @@ public class MainFrame extends JFrame {
     private User selectedUser = null;
 
 
-    public FensterMeineErsteGUI() {
+    public MainFrame() {
 		//User[] t = (User[]) Verwaltung.gymWueUser.toArray();
         setTitle("Meine erste GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,7 +79,8 @@ public class MainFrame extends JFrame {
                      if(selectedUser!=null) {
                          vornameField.setText(selectedUser.getVorname());
                          nachnameField.setText(selectedUser.getNachname());
-                         String gebDat = selectedUser.getGeb().getTag() + "." + selectedUser.getGeb().getMonat() + "." + selectedUser.getGeb().getJahr();
+                         //String gebDat = selectedUser.getGeb().getDateAsString();
+                         String gebDat = selectedUser.getGeb().getDateAsString();
                          gebDatField.setText(gebDat);
                      }
                  }
@@ -200,6 +199,3 @@ public class MainFrame extends JFrame {
         return null;
     }
 }
-
-
-
