@@ -47,6 +47,43 @@ public class Datum {
     public void setJahr(int jahr) {
         this.jahr = jahr;
     }
+    
+    public String getDateAsString() {
+    
+      String date = "";
+      if(this.tag<10) {
+            date = date + "0" + this.tag;
+      }
+      
+      else{
+            date = date + this.tag;
+      }
+      
+      date += ".";
+      if(this.monat<10) {
+            date = date + "0" + this.monat;
+      }
+      
+      else {
+            date = date + this.monat;
+      }
+      date += ".";
+      
+      if(this.jahr<10) {
+            date = date + "0" + this.jahr;
+      }
+      
+      else {
+            date = date + this.jahr;
+      }
+      
+        
+
+        return date;
+      
+
+             
+    }
 
 
 }

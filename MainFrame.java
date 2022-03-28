@@ -79,7 +79,8 @@ public class MainFrame extends JFrame {
                      if(selectedUser!=null) {
                          vornameField.setText(selectedUser.getVorname());
                          nachnameField.setText(selectedUser.getNachname());
-                         String gebDat = selectedUser.getGeb().getTag() + "." + selectedUser.getGeb().getMonat() + "." + selectedUser.getGeb().getJahr();
+                         //String gebDat = selectedUser.getGeb().getDateAsString();
+                         String gebDat = selectedUser.getGeb().getDateAsString();
                          gebDatField.setText(gebDat);
                      }
                  }
@@ -281,4 +282,3 @@ public class MainFrame extends JFrame {
         return null;
     }
 }
-
