@@ -164,6 +164,22 @@ public class MainFrame extends JFrame {
         deleteButton.setBounds(25, 190, 115, 25);
         contentPane.add(deleteButton);
 
+	    
+	    JButton infoButton = new JButton("FAQ");
+         infoButton.setBackground(Color.decode("#3C4644"));
+         infoButton.setForeground(Color.decode("#FFFFFF"));
+         infoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                //magic
+               // erzeuge neues Fenster
+               InfoFrame info = new InfoFrame();
+               info.setVisible(true);
+            }
+        });
+         infoButton.setBounds(260, 220, 115, 25);
+         contentPane.add(infoButton);
+
 
     }
     
