@@ -1,0 +1,53 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+
+
+
+public class InfoFrame extends JFrame {
+	
+		
+      private JPanel contentPane;
+      private JTextField text;
+
+
+    public InfoFrame() {
+		//User[] t = (User[]) Verwaltung.gymWueUser.toArray();
+        setTitle("FAQ");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 150, 600, 270); // 400 + 260
+        
+         
+         contentPane = new JPanel();
+         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+         setContentPane(contentPane);
+         contentPane.setBackground(Color.decode("#FFFFFF"));
+         contentPane.setLayout(null);
+        
+         JLabel textLabel = new JLabel("Was ist dieses Programm?");
+         textLabel.setBounds(25, 15, 350, 20);
+         textLabel.setForeground(Color.decode("#000000"));
+         contentPane.add(textLabel);
+         
+         JTextArea ta = new JTextArea("Dieses Programm dient zur Verwaltung von Daten \nin einer Liste des Gymnasium Würselens für Moodle.");
+         ta.setBounds(25, 30, 600, 500);
+         ta.setForeground(Color.decode("#000000"));
+         contentPane.add(ta);
+
+
+
+      
+	}
+}
+
