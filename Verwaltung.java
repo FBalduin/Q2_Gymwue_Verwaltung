@@ -1,22 +1,47 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import javax.swing.ImageIcon; 
+import javax.swing.JOptionPane;
 
 class Verwaltung	{
 	
 	public static List<User> gymWueUser;
 	
+	//Anbindung an die Datenbank
+	
 	public static void main(String[] args)	{	
+			
+			// Server // port //DB-Name // user-name // passwort
+			/*DatabaseConnector connector = new DatabaseConnector("192.162.85.139","3306","h138020_info22a","h138020_info22a","Friedrichgeniesstnun2021!");
+			if (connector.getErrorMessage() != null){
+			  JOptionPane.showMessageDialog(null,"Verbindung zur Datenbank nicht möglich. \n"+connector.getErrorMessage(),"Fehlermeldung",JOptionPane.ERROR_MESSAGE,null); 
+			  System.exit(0);
+			}*/    
+			
+		   //SQL-Anweisung: Statistische Daten aus der DB laden.
+		  /*QueryResult result = connector.getCurrentQueryResult();  
+		  String anweisung = 
+			"SELECT * FROM user";*
+		  connector.executeStatement(anweisung);
+		  result = connector.getCurrentQueryResult(); 
+		  if (result.getData()[0][0] != null){
+				System.out.println(result.getData()[0][0]);
+		  }
+
+		  if (result.getData()[0][0] != null){
+			  System.out.println("Hurra");
+		  }*/
 			
 			// Fülle Userliste mit Daten aus der CSV-Datei
 			gymWueUser = csv2UserList("userdata.csv");
 			
 			// Erstelle GUI-Objekt zur Verwaltung!
 			MainFrame meineGui = new MainFrame();
-			meineGui.setVisible(true);
-			
-			            
+			meineGui.setVisible(true);			          
 	}
+	
+	
 	
 	
     public static User[] csv2UserArray(String filepath)	{
