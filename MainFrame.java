@@ -27,7 +27,7 @@ public class MainFrame extends JFrame {
 		//User[] t = (User[]) Verwaltung.gymWueUser.toArray();
         setTitle("Meine erste GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 150, 800, 270); // 400 + 260
+        setBounds(100, 150, 800, 300); // 400 + 260
         
          
          contentPane = new JPanel();
@@ -79,7 +79,8 @@ public class MainFrame extends JFrame {
                      if(selectedUser!=null) {
                          vornameField.setText(selectedUser.getVorname());
                          nachnameField.setText(selectedUser.getNachname());
-                         String gebDat = selectedUser.getGeb().getTag() + "." + selectedUser.getGeb().getMonat() + "." + selectedUser.getGeb().getJahr();
+                         //String gebDat = selectedUser.getGeb().getDateAsString();
+                         String gebDat = selectedUser.getGeb().getDateAsString();
                          gebDatField.setText(gebDat);
                      }
                  }
@@ -164,7 +165,7 @@ public class MainFrame extends JFrame {
         
         
         
-        JButton firstButton = new JButton("first");
+        JButton firstButton = new JButton("<<");
         firstButton.setBackground(Color.decode("#3C4644"));
         firstButton.setForeground(Color.decode("#000000"));
         firstButton.addActionListener(new ActionListener() {
@@ -177,13 +178,15 @@ public class MainFrame extends JFrame {
                     nachnameField.setText(selectedUser.getNachname());
                     String gebDat = selectedUser.getGeb().getTag() + "." + selectedUser.getGeb().getMonat() + "." + selectedUser.getGeb().getJahr();
                     gebDatField.setText(gebDat);
+                    guiUserList.setSelectedIndex(0);
+                    
         }
         });
-        firstButton.setBounds(25, 230, 115, 25);
+        firstButton.setBounds(25, 230, 70, 25);
         contentPane.add(firstButton);
         
         
-        JButton lastButton = new JButton("last");
+        JButton lastButton = new JButton(">>");
         lastButton.setBackground(Color.decode("#3C4644"));
         lastButton.setForeground(Color.decode("#000000"));
         lastButton.addActionListener(new ActionListener() {
@@ -196,42 +199,20 @@ public class MainFrame extends JFrame {
                     nachnameField.setText(selectedUser.getNachname());
                     String gebDat = selectedUser.getGeb().getTag() + "." + selectedUser.getGeb().getMonat() + "." + selectedUser.getGeb().getJahr();
                     gebDatField.setText(gebDat);
+                    guiUserList.setSelectedIndex(newUsers.length-1);
         }
         });
-        lastButton.setBounds(140, 230, 115, 25);
+        lastButton.setBounds(250, 230, 70, 25);
         contentPane.add(lastButton);
         
         
-        /*
-         * 
-         * klappt noch nicht ganz
-         * 
-         * JButton nextButton = new JButton("next");
+        JButton nextButton = new JButton(">");
         nextButton.setBackground(Color.decode("#3C4644"));
         nextButton.setForeground(Color.decode("#000000"));
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                   // Verwaltung.gymWueUser.getPrevious();
-                    User last = Verwaltung.gymWueUser.getContent();
-                    if(last!=null) selectedUser = last;
-                    vornameField.setText(selectedUser.getVorname());
-                    nachnameField.setText(selectedUser.getNachname());
-                    String gebDat = selectedUser.getGeb().getTag() + "." + selectedUser.getGeb().getMonat() + "." + selectedUser.getGeb().getJahr();
-                    gebDatField.setText(gebDat);
-        }
-        });
-        nextButton.setBounds(25, 270, 115, 25);
-        contentPane.add(nextButton);
-        */
-        
-        
-        JButton previousButton = new JButton("previous");
-        previousButton.setBackground(Color.decode("#3C4644"));
-        previousButton.setForeground(Color.decode("#000000"));
-        previousButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
+					if(guiUserList.getSelectedIndex()==newUsers.length)return;
                     Verwaltung.gymWueUser.next();
                     User last = Verwaltung.gymWueUser.getContent();
                     if(last!=null) selectedUser = last;
@@ -239,10 +220,34 @@ public class MainFrame extends JFrame {
                     nachnameField.setText(selectedUser.getNachname());
                     String gebDat = selectedUser.getGeb().getTag() + "." + selectedUser.getGeb().getMonat() + "." + selectedUser.getGeb().getJahr();
                     gebDatField.setText(gebDat);
+                    guiUserList.setSelectedIndex(guiUserList.getSelectedIndex()+1);
         }
         });
-        previousButton.setBounds(25, 270, 115, 25);
-        contentPane.add(previousButton);
+        
+        nextButton.setBounds(175, 230, 70, 25);
+        contentPane.add(nextButton);
+        
+        
+        
+        JButton previousButton = new JButton("<");
+        previousButton.setBackground(Color.decode("#3C4644"));
+        previousButton.setForeground(Color.decode("#000000"));
+        previousButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                    Verwaltung.gymWueUser.previous();
+                    User last = Verwaltung.gymWueUser.getContent();
+                    if(last!=null) selectedUser = last;
+                    vornameField.setText(selectedUser.getVorname());
+                    nachnameField.setText(selectedUser.getNachname());
+                    String gebDat = selectedUser.getGeb().getTag() + "." + selectedUser.getGeb().getMonat() + "." + selectedUser.getGeb().getJahr();
+                    gebDatField.setText(gebDat);
+					guiUserList.setSelectedIndex(guiUserList.getSelectedIndex()-1);
+        
+        }
+        });
+       previousButton.setBounds(100, 230, 70, 25);
+       contentPane.add(previousButton);
 
 
 
@@ -281,4 +286,3 @@ public class MainFrame extends JFrame {
         return null;
     }
 }
-
