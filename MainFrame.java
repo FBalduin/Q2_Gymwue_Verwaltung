@@ -15,8 +15,6 @@ import java.awt.Color;
 public class MainFrame extends JFrame {
 
     private JPanel contentPane;
-    private JTextField vornameField
-    private JPanel contentPane; // Testkommentar? bbb
     private JTextField vornameField;
     private JTextField nachnameField;
     private JTextField gebDatField;
@@ -25,11 +23,11 @@ public class MainFrame extends JFrame {
     private User selectedUser = null;
 
 
-    public FensterMeineErsteGUI() {
+    public MainFrame() {
 		//User[] t = (User[]) Verwaltung.gymWueUser.toArray();
         setTitle("Meine erste GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 150, 800, 270); // 400 + 260
+        setBounds(100, 150, 800, 300); // 400 + 260
         
          
          contentPane = new JPanel();
@@ -81,7 +79,8 @@ public class MainFrame extends JFrame {
                      if(selectedUser!=null) {
                          vornameField.setText(selectedUser.getVorname());
                          nachnameField.setText(selectedUser.getNachname());
-                         String gebDat = selectedUser.getGeb().getTag() + "." + selectedUser.getGeb().getMonat() + "." + selectedUser.getGeb().getJahr();
+                         //String gebDat = selectedUser.getGeb().getDateAsString();
+                         String gebDat = selectedUser.getGeb().getDateAsString();
                          gebDatField.setText(gebDat);
                      }
                  }
@@ -163,6 +162,86 @@ public class MainFrame extends JFrame {
         });
         deleteButton.setBounds(25, 190, 115, 25);
         contentPane.add(deleteButton);
+        
+        
+        
+        JButton firstButton = new JButton("<<");
+        firstButton.setBackground(Color.decode("#3C4644"));
+        firstButton.setForeground(Color.decode("#000000"));
+        firstButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                    Verwaltung.gymWueUser.toFirst();
+                    User first = Verwaltung.gymWueUser.getContent();
+                    if(first!=null) selectedUser = first;
+                    vornameField.setText(selectedUser.getVorname());
+                    nachnameField.setText(selectedUser.getNachname());
+                    String gebDat = selectedUser.getGeb().getTag() + "." + selectedUser.getGeb().getMonat() + "." + selectedUser.getGeb().getJahr();
+                    gebDatField.setText(gebDat);
+        }
+        });
+        firstButton.setBounds(25, 230, 70, 25);
+        contentPane.add(firstButton);
+        
+        
+        JButton lastButton = new JButton(">>");
+        lastButton.setBackground(Color.decode("#3C4644"));
+        lastButton.setForeground(Color.decode("#000000"));
+        lastButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                    Verwaltung.gymWueUser.toLast();
+                    User last = Verwaltung.gymWueUser.getContent();
+                    if(last!=null) selectedUser = last;
+                    vornameField.setText(selectedUser.getVorname());
+                    nachnameField.setText(selectedUser.getNachname());
+                    String gebDat = selectedUser.getGeb().getTag() + "." + selectedUser.getGeb().getMonat() + "." + selectedUser.getGeb().getJahr();
+                    gebDatField.setText(gebDat);
+                    
+        }
+        });
+        lastButton.setBounds(250, 230, 70, 25);
+        contentPane.add(lastButton);
+        
+        
+        JButton nextButton = new JButton(">");
+        nextButton.setBackground(Color.decode("#3C4644"));
+        nextButton.setForeground(Color.decode("#000000"));
+        nextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                    User next = Verwaltung.gymWueUser.current.getNextNode().getContentObject();
+                    vornameField.setText(next.getVorname());
+                    nachnameField.setText(next.getNachname());
+                    String gebDat = next.getGeb().getTag() + "." + next.getGeb().getMonat() + "." + next.getGeb().getJahr();
+                    gebDatField.setText(gebDat);
+                    Verwaltung.gymWueUser.current = Verwaltung.gymWueUser.current.getNextNode();
+                    
+        }
+        });
+        
+        nextButton.setBounds(175, 230, 70, 25);
+        contentPane.add(nextButton);
+        
+        
+        
+        JButton previousButton = new JButton("<");
+        previousButton.setBackground(Color.decode("#3C4644"));
+        previousButton.setForeground(Color.decode("#000000"));
+        previousButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                    User prev = Verwaltung.gymWueUser.getPrevious(Verwaltung.gymWueUser.current).getContentObject();
+                    vornameField.setText(prev.getVorname());
+                    nachnameField.setText(prev.getNachname());
+                    String gebDat = prev.getGeb().getTag() + "." + prev.getGeb().getMonat() + "." + prev.getGeb().getJahr();
+                    gebDatField.setText(gebDat);
+                    Verwaltung.gymWueUser.current = Verwaltung.gymWueUser.getPrevious(Verwaltung.gymWueUser.current);
+        }
+        });
+       previousButton.setBounds(100, 230, 70, 25);
+       contentPane.add(previousButton);
+
 
 
     }
