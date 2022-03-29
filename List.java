@@ -361,4 +361,8 @@ public class List<ContentType> {
       return null;
     }
   }
+  
+  public void previous() {
+	  current = this.getPrevious(current);
+	  }
 }
